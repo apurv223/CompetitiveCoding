@@ -1,0 +1,28 @@
+public class Fibonacci {
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        int t = Integer.parseInt(reader.readLine());
+        System.out.print("Fibonaaci by normal recursion:");
+        int ans = fibRecursion(t);
+        System.out.println(ans);
+        System.out.println("Time Complexity: O(2^n) Space complexity: O(n)");
+        System.out.print("Fibonacci by DP:");
+        HashMap<Integer,Integer> hm = new HashMap<>();
+        ans = fibDynamic(t,hm);
+        System.out.println(ans);
+        System.out.println("Time Complexity: O(n) Space complexity: O(n)");
+        }
+
+    private static int fibRecursion(int t) {
+        if(t<=2) return 1;
+        else return(fibRecursion(t-1)+fibRecursion(t-2));
+    }
+
+    static int fibDynamic(int t, HashMap<Integer,Integer> hm){
+        if(hm.containsKey(t)){return hm.get(t);}
+        if(t<=2) return 1;
+        hm.put(t,fibDynamic(t-1, hm)+fibDynamic(t-2,hm));
+        return hm.get(t);
+        }
+
+}
