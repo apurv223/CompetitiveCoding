@@ -1,0 +1,47 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+/* Name of the class has to be "Main" only if the class is public. */
+class MULTHREE
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		// your code goes here
+		Scanner cs = new Scanner(System.in);
+		int t = Integer.parseInt(cs.nextLine());
+		while(t>0){
+			t--;
+			String arr[] = cs.nextLine().split(" ");
+			long k = Long.parseLong(arr[0]);
+			int d0 = Integer.parseInt(arr[1]);
+			int d1 = Integer.parseInt(arr[2]);
+			int d2 = (d0 + d1)%10;
+
+			if(k==2) System.out.println(((d0+d1)%10)%3==0?"YES":"NO");
+			else if(k==3) System.out.println(((d0+d1+d2)%10)%3==0?"YES":"NO");
+			else{
+				long till = k-3;
+				long completeCycles = till/4;
+				long leftOvers = till%4;
+			
+			
+				int d3 = (2*d2)%10;
+				int d4 = (4*d2)%10;
+				int d5 = (8*d2)%10;
+				int d6 = (6*d2)%10;
+			
+			
+				long sum = d0 + d1 + d2 + completeCycles*(d3+d4+d5+d6)%3;
+				if(leftOvers==1) sum = sum + d3;
+				else if(leftOvers==2) sum = sum + d3 + d4;
+				else if(leftOvers==3) sum = sum + d3 + d4 + d5;
+			
+			
+				if(sum%3==0) System.out.println("YES");
+				else System.out.println("NO");
+			}
+			
+		}
+	}
+}
